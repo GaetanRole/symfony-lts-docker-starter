@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}Sample page description to translate{% endblock %}
+
+{% block title %}Sample page title to translate{% endblock %}
+
+{% block body_id 'index' %}
+
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col">
+                    <h1>Hello index sample ! ✅</h1>
+
+                    <i class="fab fa-github"></i>
+                    <i class="fab fa-html5"></i>
+                    <i class="fab fa-css3-alt"></i>
+                    <i class="fab fa-js-square"></i>
+                    <i class="php"></i>
+
+                    This page is just used to show webpack entries.
+                    Translation is not made yet in this view according to issues. But already prepared in base.html.twig, blocks, routes and so on.
+
+                    <ul>
+                        <li>Your controller at <code><a href="{{ '/srv/app/symfony/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
+                        <li>Your template at <code><a href="{{ '/srv/app/symfony/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,58 @@
+@import "~bootstrap/scss/bootstrap";
+@import "fonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+$main-background-color: #f5f5f5;
+
+// Example using var, nested properties and mixins
+body {
+  background-color: $main-background-color;
+  font: {
+    family: $main-typo;
+    size: 1.1em;
+  }
+}
+
+// Example for {% block body_id 'index %}
+#index {
+  margin: 0 auto;
+  .container {
+    padding: 30px;
+    background: #FFF;
+  }
+}
+
+footer .container {
+  font-size: 0.8em;
+  text-align: center;
+  color: #777777;
+  background: #FEFFEA;
+  padding: 20px;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+header .img-thumbnail {
+  width: 20vw;
+  min-width: 150px;
+}
+
+h1 {
+  font: {
+    family: $title-typo;
+    weight: 800;
+  }
+}
+
+// Example using font-awesome in SCSS Class
+.php {
+  @extend %fa-icon;
+  @extend .fab;
+
+  &:before {
+    content: fa-content($fa-var-php);
+  }
+}

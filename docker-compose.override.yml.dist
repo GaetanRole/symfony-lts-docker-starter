@@ -1,0 +1,53 @@
+version: "3.6"
+
+services:
+
+  http:
+    volumes:
+      - "./app/symfony/public:/srv/app/symfony/public:ro"
+    ports:
+      - "8080:80"
+
+  php:
+    volumes:
+      - "./:/srv"
+    environment:
+      - PHP_IDE_CONFIG="serverName=<YOUR_PHPSTORM_SERVER_NAME>"
+      - XDEBUG_CONFIG="remote_host=<YOUR_HOST_IP>"
+
+  database:
+    volumes:
+      - "./data/db:/var/lib/mysql"
+    environment:
+      - MYSQL_DATABASE=your-database
+      - MYSQL_USER=your-user
+      - MYSQL_PASSWORD=your-password
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    ports:
+      - "3306:3306"
+
+  # http://localhost:8008/?server=database
+  adminer:
+    image: adminer:latest
+    container_name: jobs_adminer
+    working_dir: /srv
+    restart: on-failure
+    ports:
+      - "8008:8080"
+    links:
+      - database
+
+  mailcatcher:
+    image: jeanberu/mailcatcher:latest
+    container_name: jobs_mail_catcher
+    working_dir: /srv
+    restart: on-failure
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+
+  node:
+    volumes:
+      - "./:/srv"
+    ports:
+      - "3000:3000"

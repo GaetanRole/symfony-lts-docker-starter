@@ -1,0 +1,16 @@
+security:
+    providers:
+        in_memory: { memory: ~ }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|build)/
+            security: false
+        main:
+            anonymous: true
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+
+    access_control:
+        - { path: '^/$', roles: IS_AUTHENTICATED_ANONYMOUSLY }

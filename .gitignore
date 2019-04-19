@@ -1,0 +1,3 @@
+### Personnal (data/ for DB link by Docker)
+docker-compose.override.yml
+data/*

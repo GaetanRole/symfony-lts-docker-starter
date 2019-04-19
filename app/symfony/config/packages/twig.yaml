@@ -1,0 +1,7 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        # To easily loop supported locales and show alternative links (I18N links for an Twig extension)
+        app_locales: '%app_locales%'

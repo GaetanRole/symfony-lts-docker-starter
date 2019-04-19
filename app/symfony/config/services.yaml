@@ -1,0 +1,13 @@
+parameters:
+    locale: 'en'
+    app_locales: ['fr', '%locale%']
+    app_locales_regex: 'fr|%locale%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Kernel.php}'

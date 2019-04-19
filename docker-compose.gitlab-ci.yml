@@ -1,0 +1,40 @@
+# https://docs.gitlab.com/ee/ci/variables/#syntax-of-environment-variables-in-job-scripts
+# This file is useful for Gitlab-CI building its images
+# Think to registry your images in Gitlab : https://docs.gitlab.com/ee/user/project/container_registry.html
+
+version: "3.6"
+
+services:
+
+  http:
+    image: $CI_REGISTRY_IMAGE:nginx
+    build:
+      cache_from:
+        - $CI_REGISTRY_IMAGE:nginx
+    volumes:
+      - "./app/symfony/public:/srv/app/symfony/public:ro"
+
+  php:
+    image: $CI_REGISTRY_IMAGE:php
+    build:
+      cache_from:
+        - $CI_REGISTRY_IMAGE:php
+    volumes:
+      - "./:/srv"
+
+  database:
+    volumes:
+      - "./data/db:/var/lib/mysql"
+    environment:
+      - MYSQL_DATABASE=your-database
+      - MYSQL_USER=your-user
+      - MYSQL_PASSWORD=your-password
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+
+  node:
+    image: $CI_REGISTRY_IMAGE:node
+    build:
+      cache_from:
+        - $CI_REGISTRY_IMAGE:node
+    volumes:
+      - "./:/srv"

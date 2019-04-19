@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Gaëtan Rolé-Dubruille">
+    <meta name="description" content="{% block description 'base.head.meta.description'|trans %}">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <title>Jobs - {% block title 'base.head.meta.title'|trans %}</title>
+
+    {{ encore_entry_link_tags('app') }}
+
+    {% block stylesheets %}
+    {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('build/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('build/assets/images/favicon.ico') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('build/assets/images/favicon.ico') }}">
+</head>
+<body>
+<header>
+    {% block header %}
+        {% include '_header.html.twig' %}
+    {% endblock %}
+</header>
+<div id="{% block body_id 'base' %}">
+    {% block body %}{% endblock %}
+</div>
+<footer>
+    {% block footer %}
+        {% include '_footer.html.twig' %}
+    {% endblock %}
+</footer>
+
+{{ encore_entry_script_tags('app') }}
+
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>

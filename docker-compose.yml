@@ -1,0 +1,34 @@
+# File syntax : https://docs.docker.com/compose/compose-file/
+# Global config, you can add your <ENV>.yml to override this one with -f option.
+
+version: "3.6"
+
+services:
+
+  http:
+    build: ./docker/nginx
+    container_name: jobs_nginx
+    working_dir: /srv
+    restart: on-failure
+    depends_on:
+      - php
+
+  php:
+    build: ./docker/php
+    container_name: jobs_php
+    working_dir: /srv
+    restart: on-failure
+    depends_on:
+      - database
+
+  database:
+    image: mariadb:latest
+    container_name: jobs_mariadb
+    working_dir: /srv
+    restart: on-failure
+
+  node:
+    build: ./docker/node
+    container_name: jobs_node
+    working_dir: /srv
+    restart: on-failure
