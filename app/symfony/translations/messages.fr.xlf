@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="xFsVqPD" resname="default.index.head.meta.title">
+        <source>default.index.head.meta.title</source>
+        <target>__default.index.head.meta.title</target>
+      </trans-unit>
+      <trans-unit id="thG8RTG" resname="default.index.body.section.h1">
+        <source>default.index.body.section.h1</source>
+        <target>__default.index.body.section.h1</target>
+      </trans-unit>
+      <trans-unit id="7Rgikdd" resname="default.index.body.section.p">
+        <source>default.index.body.section.p</source>
+        <target>__default.index.body.section.p</target>
+      </trans-unit>
+      <trans-unit id="ssclScq" resname="default.index.body.section.ul.li.first">
+        <source>default.index.body.section.ul.li.first</source>
+        <target>__default.index.body.section.ul.li.first</target>
+      </trans-unit>
+      <trans-unit id="o100nCf" resname="default.index.body.section.ul.li.second">
+        <source>default.index.body.section.ul.li.second</source>
+        <target>__default.index.body.section.ul.li.second</target>
+      </trans-unit>
+      <trans-unit id="j7mtFaM" resname="base.head.meta.description">
+        <source>base.head.meta.description</source>
+        <target>__base.head.meta.description</target>
+      </trans-unit>
+      <trans-unit id="SNvq9F." resname="base.head.meta.title">
+        <source>base.head.meta.title</source>
+        <target>__base.head.meta.title</target>
+      </trans-unit>
+      <trans-unit id="qE9Vgyb" resname="default.footer.text">
+        <source>default.footer.text</source>
+        <target>__default.footer.text</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

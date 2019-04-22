@@ -4,7 +4,6 @@
     "@symfony/webpack-encore": "^0.27.0",
     "bootstrap": "^4.3.1",
     "eslint": "^5.16.0",
-    "html5shiv": "^3.7.3",
     "jquery": "^3.4.0",
     "node-sass": "^4.11.0",
     "popper.js": "^1.15.0",

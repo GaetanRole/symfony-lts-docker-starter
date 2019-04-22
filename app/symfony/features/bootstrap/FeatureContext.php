@@ -5,6 +5,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+/**
+ * @see http://behat.org/en/latest/quick_start.html
+ */
 class FeatureContext implements Context
 {
     /** @var KernelInterface */
@@ -34,7 +37,7 @@ class FeatureContext implements Context
     public function theResponseShouldBeReceived(): void
     {
         if (null === $this->response) {
-            throw new \RuntimeException('No response received');
+            throw new RuntimeException('No response received');
         }
     }
 }

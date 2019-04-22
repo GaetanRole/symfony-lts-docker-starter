@@ -184,6 +184,9 @@
     "nikic/php-parser": {
         "version": "v4.2.1"
     },
+    "ocramius/package-versions": {
+        "version": "1.4.0"
+    },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
     },
@@ -309,7 +312,7 @@
         ]
     },
     "swiftmailer/swiftmailer": {
-        "version": "v6.2.0"
+        "version": "v6.2.1"
     },
     "symfony/asset": {
         "version": "v4.2.7"

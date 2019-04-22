@@ -26,9 +26,3 @@ services:
     container_name: jobs_mariadb
     working_dir: /srv
     restart: on-failure
-
-  node:
-    build: ./docker/node
-    container_name: jobs_node
-    working_dir: /srv
-    restart: on-failure

@@ -17,7 +17,7 @@ services:
 
   database:
     volumes:
-      - "./data/db:/var/lib/mysql"
+      - "database-volume:/var/lib/mysql:rw"
     environment:
       - MYSQL_DATABASE=your-database
       - MYSQL_USER=your-user
@@ -46,8 +46,6 @@ services:
       - "1025:1025"
       - "1080:1080"
 
-  node:
-    volumes:
-      - "./:/srv"
-    ports:
-      - "3000:3000"
+volumes:
+
+  database-volume: {}

@@ -38,10 +38,10 @@ build-docker:
   script:
     - make build
     - make start
-    - make symfony--.env
-    - make symfony--vendor
-    - make symfony--node_modules
-    - make symfony--assets
+    - make symfony:.env.local
+    - make symfony:vendor
+    - make symfony:node_modules
+    - make symfony:assets
     - docker-compose push
 
 ## Stage tests
@@ -50,16 +50,15 @@ phpunit:
   stage: tests
   script:
     - make start
-    - make symfony--phpunit
+    - make symfony:phpunit
 
 behat:
   <<: *internal-image
   stage: tests
   script:
     - make start
-    - make symfony--db-init
-    - make symfony--behat.yml
-    - make symfony--behat
+    - make symfony:db-init
+    - make symfony:behat
 
 ## Stage quality-assurance
 security:
@@ -67,50 +66,47 @@ security:
   stage: quality-assurance
   script:
     - make start
-    - make symfony--security
+    - make symfony:security
 
 lint:
   <<: *internal-image
   stage: quality-assurance
   script:
     - make start
-    - make symfony--lint
+    - make symfony:lint
 
 php-cs-fixer:
   <<: *internal-image
   stage: quality-assurance
   script:
     - make start
-    - make symfony--.php_cs
-    - make symfony--qa_php-cs-fixer
+    - make symfony:qa_php-cs-fixer
 
 phpcs:
   <<: *internal-image
   stage: quality-assurance
   script:
     - make start
-    - make symfony--phpcs.xml
-    - make symfony--phpcbf
-    - make symfony--phpcs
+    - make symfony:phpcbf
+    - make symfony:phpcs
 
 phploc:
   <<: *internal-image
   stage: quality-assurance
   script:
     - make start
-    - make symfony--phploc
+    - make symfony:phploc
 
 phpcpd:
   <<: *internal-image
   stage: quality-assurance
   script:
     - make start
-    - make symfony--phpcpd
+    - make symfony:phpcpd
 
 phpmd:
   <<: *internal-image
   stage: quality-assurance
   script:
     - make start
-    - make symfony--phpmd.xml
-    - make symfony--phpmd
+    - make symfony:phpmd

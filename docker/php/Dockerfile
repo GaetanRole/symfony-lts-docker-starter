@@ -18,6 +18,9 @@ RUN     apk update
 RUN     apk add --update --no-cache \
         git \
         unzip \
+        make \
+        nodejs \
+        yarn \
         zlib-dev \
         libzip-dev \
         ca-certificates \

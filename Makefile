@@ -1,7 +1,8 @@
 # Parent Makefile focusing on Docker
 
-SYMFONY				= make --directory=app/symfony
 DOCKER_COMPOSE		= docker-compose
+SYMFONY				= $(DOCKER_COMPOSE) exec -T php /usr/bin/entrypoint make --directory=app/symfony
+CONSOLE				= $(DOCKER_COMPOSE) exec -T php /usr/bin/entrypoint ./app/symfony/bin/console
 
 ##
 ###----------------------------------#
@@ -9,8 +10,11 @@ DOCKER_COMPOSE		= docker-compose
 ###----------------------------------#
 ##
 
-symfony--%:			## Calling child Makefile with rule
+symfony\:%:			## Calling child Makefile with rule
 					$(SYMFONY) --no-print-directory $*
+
+sf-console\:%:		## Calling Symfony console
+					$(CONSOLE) $* $(ARGS)
 
 build:				./docker-compose.yml ./docker-compose.override.yml.dist ## Build Docker images
 					@if [ -f ./docker-compose.override.yml ]; \
