@@ -16,8 +16,8 @@ final class DefaultControllerTest extends AbstractWebTestCase
      */
     public function testIndexMethodReturnsA200StatusCode(): void
     {
-        $this->client->request('GET', '/');
+        $this->webClient->request('GET', '/');
 
-        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSame(200, $this->webClient->getResponse()->getStatusCode());
     }
 }

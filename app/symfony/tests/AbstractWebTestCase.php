@@ -8,14 +8,14 @@ use Symfony\Component\HttpKernel\Client;
 abstract class AbstractWebTestCase extends WebTestCase
 {
     /** @var Client A Client instance */
-    protected $client;
+    protected $webClient;
 
     /**
      * Setting up $client var
      */
     protected function setUp(): void
     {
-        $this->client = static::createClient();
-        $this->client->followRedirects();
+        $this->webClient = static::createClient();
+        $this->webClient->followRedirects();
     }
 }

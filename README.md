@@ -11,13 +11,13 @@ Symfony-docker-starter is a Symfony project with a whole Docker stack, using a C
 
 ### Docker contents
 
-- [NGINX 1.15](https://hub.docker.com/_/nginx)
+- [NGINX 1.17](https://hub.docker.com/_/nginx)
 - [PHP-FPM 7.3](https://hub.docker.com/_/php)
 - [MariaDB 10.4](https://hub.docker.com/_/mariadb)
 - [Adminer 4.7](https://hub.docker.com/_/adminer)
-- [MailCatcher](https://hub.docker.com/r/jeanberu/mailcatcher)
+- [MailCatcher 0.6.5](https://hub.docker.com/r/jeanberu/mailcatcher)
 - [Node LTS](https://hub.docker.com/_/node)
-- [Yarn](https://yarnpkg.com/lang/en/)
+- [Yarn 1.16](https://yarnpkg.com/lang/en/)
 - [Composer 1.8](https://getcomposer.org/)
 - [PHP-CS-FIXER-V2](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 - [Xdebug 2.7](https://xdebug.org/)
@@ -69,8 +69,8 @@ README.md
 $ make install
 ```
 
-You can edit the new `docker-compose.override.yml` and `app/symfony/.env.local` with your own configuration for DB,
-Docker ports and PHPStorm configuration.
+You can edit the new `docker-compose.override.yml` and `app/symfony/.env.local` with **your own configuration for DB,
+Docker ports and PHPStorm configuration**.
 
 > Keep in mind that you can use both Makefiles, especially the one specific to Symfony directory `make symfony:"rule"` and independent from Docker.
 
