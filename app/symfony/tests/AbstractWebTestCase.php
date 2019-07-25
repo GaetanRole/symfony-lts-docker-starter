@@ -1,10 +1,15 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpKernel\Client;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @author  Gaëtan Rolé-Dubruille <gaetan.role@gmail.com>
+ */
 abstract class AbstractWebTestCase extends WebTestCase
 {
     /** @var Client A Client instance */

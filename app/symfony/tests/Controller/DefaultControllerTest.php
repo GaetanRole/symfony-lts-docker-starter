@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Tests\Controller;
 
 use App\Tests\AbstractWebTestCase;
@@ -7,7 +9,8 @@ use App\Tests\AbstractWebTestCase;
 /**
  * Inherited for setup method()
  *
- * @group functional
+ * @group   functional
+ * @author  Gaëtan Rolé-Dubruille <gaetan.role@gmail.com>
  */
 final class DefaultControllerTest extends AbstractWebTestCase
 {

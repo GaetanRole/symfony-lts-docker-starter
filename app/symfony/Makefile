@@ -12,17 +12,14 @@ YARN				= yarn
 
 install:			.env.local vendor node_modules assets db-init ## Launch project : copy the env and start the project with vendors, assets and DB
 
-clean:				qa-clean-conf ## Remove all generated files
-					rm -rvf ./vendor ./node_modules ./var
-					rm -rvf ./.env.local ./behat.yml
+install-prod:		.env.local
+					sed -i -E s/APP_ENV=[a-zA-Z]+/APP_ENV=prod/ .env.local
+					$(COMPOSER) install --no-dev --optimize-autoloader
+					$(YARN) install --production
+					$(YARN) run build
+					$(CONSOLE) cache:clear --env=prod
 
-clear:				db-destroy clear-assets clean ## Remove all generated files and db
-
-update:				node_modules ## Update dependencies
-					$(COMPOSER) update --lock --no-interaction
-					$(YARN) upgrade
-
-.PHONY:				install clean clear update
+.PHONY:				install install-prod
 
 ##
 ###-------------------------#
@@ -80,8 +77,28 @@ node_modules:		./package.json ## Yarn install
 ###------------#
 ##
 
+clean:				qa-clean-conf ## Remove all generated files
+					rm -rvf ./vendor ./node_modules ./var
+					rm -rvf ./.env.local ./behat.yml
+
+clear:				db-destroy clear-assets clean ## Remove all generated files and db
+
 cc:					## Clear cache
 					$(CONSOLE) cache:clear
+
+cc-prod:			## Clear cache for prod
+					$(CONSOLE) cache:clear --env=prod
+
+update:				node_modules ## Update dependencies
+					$(COMPOSER) update --lock --no-interaction
+					$(YARN) upgrade
+
+update-prod:		## Update dependencies for prod
+					$(COMPOSER) update --no-dev --optimize-autoloader
+					$(CONSOLE) cache:clear --env=prod
+					$(COMPOSER) dump-autoload --optimize --no-dev --classmap-authoritative
+					# sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx var/cache var/log
+                    # sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx var/cache var/log
 
 assets:				node_modules ## Install node_modules and compile with Yarn
 					$(YARN) run dev
@@ -92,7 +109,7 @@ watch:				node_modules ## Install node_modules and compile with Yarn with watch 
 clear-assets:		## Remove build directory
 					rm -rvf ./public/build
 
-.PHONY:				cc assets watch clear-assets
+.PHONY:				clean clear cc cc-prod update update-prod assets watch clear-assets
 
 ##
 ###-------------------#

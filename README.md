@@ -17,7 +17,7 @@ Symfony-docker-starter is a Symfony project with a whole Docker stack, using a C
 - [Adminer 4.7](https://hub.docker.com/_/adminer)
 - [MailCatcher 0.6.5](https://hub.docker.com/r/jeanberu/mailcatcher)
 - [Node LTS](https://hub.docker.com/_/node)
-- [Yarn 1.16](https://yarnpkg.com/lang/en/)
+- [Yarn 1.17](https://yarnpkg.com/lang/en/)
 - [Composer 1.8](https://getcomposer.org/)
 - [PHP-CS-FIXER-V2](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
 - [Xdebug 2.7](https://xdebug.org/)
