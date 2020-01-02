@@ -15,7 +15,7 @@ body {
   }
 }
 
-// Example for {% block body_id 'index %}
+// Example for {% content_tag_attributes 'id="index"' %}
 #index {
   margin: 0 auto;
   .container {

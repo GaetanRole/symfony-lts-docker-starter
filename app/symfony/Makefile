@@ -1,8 +1,22 @@
 # Child Makefile focusing on Symfony stack
 
 CONSOLE				= bin/console
-COMPOSER			= composer
+# A little hack to increase Composer memory
+COMPOSER			= php -d memory_limit=-1 /usr/local/bin/composer
 YARN				= yarn
+
+##
+###------------#
+###    Help    #
+###------------#
+##
+
+.DEFAULT_GOAL := 	help
+
+help:				## DEFAULT_GOAL : Display help messages for child Makefile
+					@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+
+.PHONY: 			help
 
 ##
 ###---------------------------#
@@ -61,14 +75,14 @@ db-update: 			vendor db-diff db-migrate ## Alias coupling db-diff and db-migrate
 ##
 
 vendor:				./composer.json ## Install dependencies (vendor) (might be slow)
-					echo 'Might be very slow for the first launch.'
+					@echo 'Might be very slow for the first launch.'
 					$(COMPOSER) install --prefer-dist --no-progress
 
 node_modules:		./package.json ## Yarn install
 					$(YARN) install
 
 .env.local:			./.env ## Create env.local
-					echo '\033[1;42m/\ The .env.local was just created. Feel free to put your config in it.\033[0m';
+					@echo '\033[1;42m/\ The .env.local was just created. Feel free to put your config in it.\033[0m';
 					cp ./.env ./.env.local;
 
 ##
@@ -129,9 +143,9 @@ tw:					vendor ## Run wip tests
 coverage:			vendor ## Run code coverage of PHPunit suite
 					./bin/phpunit --coverage-html ./var/coverage
 
-phpunit: 			tu tf tw coverage ## Alias coupling all PHPUnit tests
+tests: 				tu tf tw coverage ## Alias coupling all PHPUnit tests
 
-.PHONY:				tu tf tw coverage phpunit
+.PHONY:				tu tf tw coverage tests
 
 ##
 ###-----------------------#
@@ -162,12 +176,15 @@ lt:					vendor ## Lint twig templates
 ly:					vendor ## Lint yaml config from another linter
 					./vendor/bin/yaml-linter ./config
 
-lint:				lt ly ## Lint twig and yaml files
+lc:					vendor ## Ensures that arguments injected into services match type declarations
+					$(CONSOLE) lint:container
+
+lint:				lt ly lc ## Lint twig and yaml files
 
 security:			vendor ## Check security of your dependencies (https://security.sensiolabs.org/)
 					./vendor/bin/security-checker security:check
 
-.PHONY:				lt ly lint security
+.PHONY:				lt ly lc lint security
 
 ##
 ###-------------------#
@@ -248,21 +265,8 @@ phpmd: 				phpmd.xml vendor ## PHPMD (https://github.com/phpmd/phpmd)
 qa-clean-conf:		## Erasing all quality assurance conf files
 					rm -rvf ./.php_cs ./phpcs.xml ./.phpcs-cache ./phpmd.xml
 
-qa: 				lt ly php-cs-fixer phpcs phpcbf phploc phpcpd phpmd ## Alias to run/apply Q&A tools
+qa: 				lt ly lc php-cs-fixer phpcs phpcbf phploc phpcpd phpmd ## Alias to run/apply Q&A tools
 
-tests: 				phpunit behat ## Alias coupling all PHPUnit tests and Behat
+tests: 				tests behat ## Alias coupling all PHPUnit tests and Behat
 
 .PHONY:				qa-clean-conf qa tests
-
-##
-###------------#
-###    Help    #
-###------------#
-##
-
-.DEFAULT_GOAL := 	help
-
-help:				## DEFAULT_GOAL : Display help messages for child Makefile
-					@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-20s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
-
-.PHONY: 			help

@@ -1,17 +1,21 @@
-FROM    composer:1.8 as composer
-FROM    php:7.3-fpm-alpine
+FROM    composer:1.10 as composer
+FROM    php:7.4-fpm-alpine
 
 COPY    --from=composer /usr/bin/composer /usr/local/bin/composer
 
-LABEL   maintainer="Gaëtan Rolé-Dubruille <gaetan.role-dubruille@sensiolabs.com>"
+LABEL   maintainer="Gaëtan Rolé-Dubruille <gaetan.role@gmail.com>"
 
 # PECL
-ENV     APCU_VERSION 5.1.17
+ENV     APCU_VERSION 5.1.18
 
 # Removing APKINDEX warnings
 RUN     rm -rf /var/cache/apk/* && \
         rm -rf /tmp/*
+
 RUN     apk update
+
+RUN     apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
+        yarn install
 
 # Native libs and building dependencies
 # su-exec > gosu (10kb instead of 1.8MB)
@@ -20,7 +24,6 @@ RUN     apk add --update --no-cache \
         unzip \
         make \
         nodejs \
-        yarn \
         zlib-dev \
         libzip-dev \
         ca-certificates \

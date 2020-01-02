@@ -1,5 +1,10 @@
 ### Personnal
 phpmd.xml
+.idea
+npm-debug.log
+.DS_Store
+.AppleDouble
+.LSOverride
 
 ###> behat/symfony2-extension ###
 behat.yml
@@ -19,6 +24,7 @@ behat.yml
 /.env.local
 /.env.local.php
 /.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
 /vendor/
@@ -27,6 +33,7 @@ builds
 
 ###> symfony/phpunit-bridge ###
 .phpunit
+.phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 

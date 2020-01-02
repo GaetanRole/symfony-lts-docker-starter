@@ -1,2 +1,0 @@
-_sensiolabs_connect:
-    resource: "@SensioLabsConnectBundle/Resources/config/routing.xml"

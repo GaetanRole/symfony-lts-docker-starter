@@ -1,0 +1,18 @@
+{% if app.session.flashbag.peekAll|length > 0 %}
+    <div id="flash-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {% for type, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-dismissible alert-{{ type }}" role="alert">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <button type="button" class="btn btn-sm btn-block btn-dark" data-dismiss="modal">X</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

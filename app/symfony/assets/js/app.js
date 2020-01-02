@@ -8,12 +8,12 @@ import '@fortawesome/fontawesome-free'
 // Example importing a function from greet.js
 import greet from './greet';
 
-// To copy all ../images into public/build
-const imagesContext = require.context('../images', true, /\.(png|jpg|jpeg|gif|ico|svg|webp)$/);
-imagesContext.keys().forEach(imagesContext);
-
 $(document).ready(function () {
-    // Testing
+    // Bootstrap JS dependency
     $('[data-toggle="popover"]').popover();
+
+    // Always show Bootstrap modal for flash messages
+    $('.modal').modal('show');
+
     console.log(greet('Github User'));
 });

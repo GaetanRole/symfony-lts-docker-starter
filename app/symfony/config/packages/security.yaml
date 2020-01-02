@@ -7,10 +7,11 @@ security:
             pattern: ^/(_(profiler|wdt)|build)/
             security: false
         main:
-            anonymous: true
+            anonymous: lazy
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     access_control:
         - { path: '^/$', roles: IS_AUTHENTICATED_ANONYMOUSLY }

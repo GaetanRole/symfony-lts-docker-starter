@@ -1,12 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * @see http://behat.org/en/latest/quick_start.html
+ * @see     http://behat.org/en/latest/quick_start.html
+ *
+ * @author  Gaëtan Rolé-Dubruille <gaetan.role@gmail.com>
  */
 class FeatureContext implements Context
 {

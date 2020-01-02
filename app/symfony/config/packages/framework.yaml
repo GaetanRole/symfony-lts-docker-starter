@@ -2,7 +2,7 @@ framework:
     secret: '%env(APP_SECRET)%'
     csrf_protection: ~
     session:
-        name: jobs-session
+        name: starter-session
         handler_id: session.handler.native_file
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
         cookie_secure: auto

@@ -1,23 +1,12 @@
-parameters:
-    env(DATABASE_URL): ''
-
 doctrine:
     dbal:
-        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
-        default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
-
         url: '%env(resolve:DATABASE_URL)%'
-
         types:
-            uuid:  'Ramsey\Uuid\Doctrine\UuidType'
+            uuid: 'Ramsey\Uuid\Doctrine\UuidType'
 
     orm:
         auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
             App:

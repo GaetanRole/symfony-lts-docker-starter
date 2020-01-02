@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} - {{ 'default.index.head.meta.title'|trans }}{% endblock %}
+{# You can replace other parent blocks @see '../base.html.twig' #}
+{% block title 'default.index.head.meta.title'|trans %}
+{% block og_title 'default.index.head.meta.title'|trans %}
 
-{% block body_id 'index' %}
+{% block content_tag_attributes 'id="index"' %}
 
-{% block body %}
+{% block content %}
     <section>
         <div class="container">
             <div class="row mb-4">
@@ -15,6 +17,7 @@
                     <span class="fab fa-html5"></span>
                     <span class="fab fa-css3-alt"></span>
                     <span class="fab fa-js-square"></span>
+                    <!-- See assets/app.scss -->
                     <span class="php"></span>
 
                     <p>
