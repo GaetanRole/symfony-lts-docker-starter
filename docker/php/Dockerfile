@@ -1,12 +1,12 @@
-FROM    composer:1.8 as composer
-FROM    php:7.3-fpm-alpine
+FROM    composer:1.9 as composer
+FROM    php:7.4-fpm-alpine
 
 COPY    --from=composer /usr/bin/composer /usr/local/bin/composer
 
 LABEL   maintainer="Gaëtan Rolé-Dubruille <gaetan.role-dubruille@sensiolabs.com>"
 
 # PECL
-ENV     APCU_VERSION 5.1.17
+ENV     APCU_VERSION 5.1.18
 
 # Removing APKINDEX warnings
 RUN     rm -rf /var/cache/apk/* && \

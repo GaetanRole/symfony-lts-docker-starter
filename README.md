@@ -1,8 +1,8 @@
-# Symfony-docker-starter
+# sf4.4-docker-starter
 
-Symfony-docker-starter is a Symfony project with a whole Docker stack, using a CI (Gitlab-CI here) and so on, **according to best practices** on a set of components listed below.
+sf4.4-docker-starter is a Symfony project with a whole Docker stack, using a CI (Gitlab-CI here) and so on, **according to best practices** on a set of components listed below.
 
-![Software License](https://img.shields.io/badge/php-7.3-brightgreen.svg)
+![Software License](https://img.shields.io/badge/php-7.4-brightgreen.svg)
 
 [![Author](https://img.shields.io/badge/author-gaetan.role--dubruille%40sensiolabs.com-blue.svg)](https://github.com/gaetanrole)
 
@@ -12,15 +12,15 @@ Symfony-docker-starter is a Symfony project with a whole Docker stack, using a C
 ### Docker contents
 
 - [NGINX 1.17](https://hub.docker.com/_/nginx)
-- [PHP-FPM 7.3](https://hub.docker.com/_/php)
+- [PHP-FPM 7.4](https://hub.docker.com/_/php)
 - [MariaDB 10.4](https://hub.docker.com/_/mariadb)
 - [Adminer 4.7](https://hub.docker.com/_/adminer)
-- [MailCatcher 0.6.5](https://hub.docker.com/r/jeanberu/mailcatcher)
+- [MailCatcher 0.7.1](https://hub.docker.com/r/jeanberu/mailcatcher)
 - [Node LTS](https://hub.docker.com/_/node)
-- [Yarn 1.17](https://yarnpkg.com/lang/en/)
-- [Composer 1.8](https://getcomposer.org/)
+- [Yarn 1.21](https://yarnpkg.com/lang/en/)
+- [Composer 1.9](https://getcomposer.org/)
 - [PHP-CS-FIXER-V2](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
-- [Xdebug 2.7](https://xdebug.org/)
+- [Xdebug 2.9](https://xdebug.org/)
 
 ### Project dependencies
 
@@ -73,6 +73,7 @@ You can edit the new `docker-compose.override.yml` and `app/symfony/.env.local` 
 Docker ports and PHPStorm configuration**.
 
 > Keep in mind that you can use both Makefiles, especially the one specific to Symfony directory `make symfony:"rule"` and independent from Docker.
+> If Composer stops due to memory, launch it separately or increase the size of your containers.
 
 ## Usage
 

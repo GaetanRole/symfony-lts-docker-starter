@@ -41,7 +41,7 @@ kill:				## Kill Docker containers
 					$(DOCKER_COMPOSE) down --volumes --remove-orphans
 
 clean:				kill ## Alias coupling kill and remove all generated files from Symfony
-					$(SYMFONY) clean
+					make --directory=app/symfony clean
 
 clear:				## Remove all generated files, db, containers, and images
 					$(SYMFONY) clear
