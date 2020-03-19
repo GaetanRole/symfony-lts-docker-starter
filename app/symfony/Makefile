@@ -80,8 +80,8 @@ vendor:				./composer.json ## Install dependencies (vendor) (might be slow)
 					$(COMPOSER) install --prefer-dist --no-progress
 
 node_modules:		./package.json ## Yarn install
-					$(YARN) install
-					# Ensure thar node sass to get the right binding
+					$(YARN) install --frozen-lockfile
+					# Ensure that node-sass gets the right binding
 					node ./node_modules/node-sass/scripts/install.js
 
 .env.local:			./.env ## Create env.local

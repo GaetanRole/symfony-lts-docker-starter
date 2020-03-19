@@ -16,8 +16,7 @@ RUN     rm -rf /var/cache/apk/* && \
 RUN     apk update
 
 # Install Yarn
-RUN     apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
-        yarn install
+RUN     apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/
 
 # Nodejs, native libs and building PHP dependencies
 # su-exec > gosu (10kb instead of 1.8MB)
