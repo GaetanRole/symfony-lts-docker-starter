@@ -1,8 +1,8 @@
 # Parent Makefile focusing on Docker
 
 DOCKER_COMPOSE		= docker-compose
-SYMFONY				= $(DOCKER_COMPOSE) exec -T php /usr/bin/entrypoint make --directory=app/symfony
-CONSOLE				= $(DOCKER_COMPOSE) exec -T php /usr/bin/entrypoint ./app/symfony/bin/console
+SYMFONY				= $(DOCKER_COMPOSE) exec -T web-stack /usr/local/bin/entrypoint make --directory=app/symfony
+CONSOLE				= $(DOCKER_COMPOSE) exec -T web-stack /usr/local/bin/entrypoint ./app/symfony/bin/console
 
 ##
 ###------------#

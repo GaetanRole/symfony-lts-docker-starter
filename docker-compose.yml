@@ -7,15 +7,15 @@ services:
 
   http:
     build: ./docker/nginx
-    container_name: jobs_nginx
+    container_name: starter_nginx
     working_dir: /srv
     restart: on-failure
     depends_on:
-      - php
+      - web-stack
 
-  php:
-    build: ./docker/php
-    container_name: jobs_php
+  web-stack:
+    build: ./docker/web
+    container_name: starter_web_stack
     working_dir: /srv
     restart: on-failure
     depends_on:
@@ -23,6 +23,6 @@ services:
 
   database:
     image: mariadb:latest
-    container_name: jobs_mariadb
+    container_name: starter_mariadb
     working_dir: /srv
     restart: on-failure

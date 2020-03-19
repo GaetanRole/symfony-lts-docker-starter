@@ -1,6 +1,7 @@
 # Child Makefile focusing on Symfony stack
 
 CONSOLE				= bin/console
+PHPUNIT				= SYMFONY_PHPUNIT_VERSION=7.5 bin/phpunit
 # A little hack to increase Composer memory
 COMPOSER			= php -d memory_limit=-1 /usr/local/bin/composer
 YARN				= yarn
@@ -80,6 +81,8 @@ vendor:				./composer.json ## Install dependencies (vendor) (might be slow)
 
 node_modules:		./package.json ## Yarn install
 					$(YARN) install
+					# Ensure thar node sass to get the right binding
+					node ./node_modules/node-sass/scripts/install.js
 
 .env.local:			./.env ## Create env.local
 					@echo '\033[1;42m/\ The .env.local was just created. Feel free to put your config in it.\033[0m';
@@ -93,7 +96,7 @@ node_modules:		./package.json ## Yarn install
 
 clean:				qa-clean-conf ## Remove all generated files
 					rm -rvf ./vendor ./node_modules ./var
-					rm -rvf ./.env.local ./behat.yml
+					rm -rvf ./.env.local ./bin/.phpunit ./behat.yml
 
 clear:				db-destroy clear-assets clean ## Remove all generated files and db
 
@@ -132,16 +135,16 @@ clear-assets:		## Remove build directory
 ##
 
 tu:					vendor ## Run unit tests (might be slow for the first time)
-					./bin/phpunit --exclude-group functional
+					$(PHPUNIT) --exclude-group functional
 
 tf:					vendor ## Run functional tests
-					./bin/phpunit --group functional
+					$(PHPUNIT) --group functional
 
 tw:					vendor ## Run wip tests
-					./bin/phpunit --group wip
+					$(PHPUNIT) --group wip
 
 coverage:			vendor ## Run code coverage of PHPunit suite
-					./bin/phpunit --coverage-html ./var/coverage
+					$(PHPUNIT) --coverage-html ./var/coverage
 
 tests: 				tu tf tw coverage ## Alias coupling all PHPUnit tests
 

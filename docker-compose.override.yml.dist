@@ -8,7 +8,7 @@ services:
     ports:
       - "8080:80"
 
-  php:
+  web-stack:
     volumes:
       - "./:/srv"
     environment:
@@ -29,7 +29,7 @@ services:
   # http://localhost:8008/?server=database
   adminer:
     image: adminer:latest
-    container_name: jobs_adminer
+    container_name: starter_adminer
     working_dir: /srv
     restart: on-failure
     ports:
@@ -39,7 +39,7 @@ services:
 
   mailcatcher:
     image: jeanberu/mailcatcher:latest
-    container_name: jobs_mail_catcher
+    container_name: starter_mail_catcher
     working_dir: /srv
     restart: on-failure
     ports:

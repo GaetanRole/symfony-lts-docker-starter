@@ -4,7 +4,7 @@ Symfony Docker starter is a up-to-date Symfony project (4.4 version) with a whol
 
 ![Software License](https://img.shields.io/badge/php-7.4-brightgreen.svg)
 
-[![Author](https://img.shields.io/badge/author-gaetan.role--dubruille%40sensiolabs.com-blue.svg)](https://github.com/gaetanrole)
+[![Author](https://img.shields.io/badge/author-gaetan.role%40gmail.com-blue.svg)](https://github.com/gaetanrole)
 
 > You can take this repository and replace the Symfony project in it, with your, to take advantage of the Docker stack. Remember to keep the Symfony Makefile.
 
@@ -18,7 +18,7 @@ Symfony Docker starter is a up-to-date Symfony project (4.4 version) with a whol
 - [MariaDB 10.5](https://hub.docker.com/_/mariadb)
 - [Adminer 4.7](https://hub.docker.com/_/adminer)
 - [MailCatcher 0.7.1](https://hub.docker.com/r/jeanberu/mailcatcher)
-- [Node LTS](https://hub.docker.com/_/node)
+- [Node Current](https://nodejs.org/en/)
 - [Yarn 1.22](https://yarnpkg.com/lang/en/)
 - [Composer 1.10](https://getcomposer.org/)
 - [PHP-CS-FIXER-V2](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
@@ -52,7 +52,7 @@ app/
         ...
 docker/
     nginx/
-    php/
+    web/
 .gitlab-ci.yml
 docker-compose.gitlab-ci.yml
 docker-compose.override.yml.dist
@@ -79,7 +79,7 @@ Docker ports and PHPStorm configuration**.
 
 ## Usage
 
-Go on : http://localhost:8080/ (or another port specified in your `./docker-compose.override.yml`)
+Go on: http://localhost:8080/ (or another port specified in your `./docker-compose.override.yml`)
 
 _- Wanna use something ?_
 
@@ -100,6 +100,43 @@ $ make sf-console:c:c ARGS="--env=dev"
 ```bash
 $ make symfony:tests    # Behat and PHPUnit tests
 $ make symfony:qa       # Quality & Assurance tools
+```
+
+## Docker advice
+
+If you want to fully merge your Symfony application with Docker and not take advantage of my design, you can keep this directory structure but split dependencies in different Docker containers.
+For example, with Node dependency (for Yarn used by Webpack-Encore):
+
+```docker
+# In docker-compose.yml
+  node:
+    build: ./docker/node
+    container_name: starter_node
+    working_dir: /srv
+    restart: on-failure
+    
+# In docker-compose.override.yml
+  node:
+    volumes:
+      - "./:/srv"
+      
+# Create a Node Dockerfile
+FROM    node:13.10-alpine
+LABEL   maintainer="Gaëtan Rolé-Dubruille <gaetan.role@gmail.com>"
+RUN     apk add --no-cache su-exec && \
+        addgroup bar && \
+        adduser -D -h /home -s /bin/sh -G bar foo
+RUN     apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
+        yarn install
+COPY    ./bin/entrypoint.sh /usr/local/bin/entrypoint
+RUN     set -o errexit -o nounset -o xtrace; \
+        chmod a+x /usr/local/bin/entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
+```
+
+```Makefile
+# In Makefile, call Yarn from the Node container
+YARN = $(DOCKER_COMPOSE) exec -T node /usr/local/bin/entrypoint yarn
 ```
 
 ## Contributing

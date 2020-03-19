@@ -1,3 +1,4 @@
+# Install Composer and PHP
 FROM    composer:1.10 as composer
 FROM    php:7.4-fpm-alpine
 
@@ -14,16 +15,17 @@ RUN     rm -rf /var/cache/apk/* && \
 
 RUN     apk update
 
+# Install Yarn
 RUN     apk add yarn --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ && \
         yarn install
 
-# Native libs and building dependencies
+# Nodejs, native libs and building PHP dependencies
 # su-exec > gosu (10kb instead of 1.8MB)
 RUN     apk add --update --no-cache \
         git \
         unzip \
         make \
-        nodejs \
+        nodejs-current \
         zlib-dev \
         libzip-dev \
         ca-certificates \
@@ -55,5 +57,5 @@ COPY    conf.d/xdebug.ini /usr/local/etc/php/conf.d
 RUN     echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # Entrypoint
-COPY    ./bin/entrypoint.sh /usr/bin/entrypoint
-ENTRYPOINT ["/usr/bin/entrypoint"]
+COPY    ./bin/entrypoint.sh /usr/local/bin/entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint"]

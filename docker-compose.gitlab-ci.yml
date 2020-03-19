@@ -14,11 +14,11 @@ services:
     volumes:
       - "./app/symfony/public:/srv/app/symfony/public:ro"
 
-  php:
-    image: $CI_REGISTRY_IMAGE:php
+  web-stack:
+    image: $CI_REGISTRY_IMAGE:web-stack
     build:
       cache_from:
-        - $CI_REGISTRY_IMAGE:php
+        - $CI_REGISTRY_IMAGE:web-stack
     volumes:
       - "./:/srv"
 
