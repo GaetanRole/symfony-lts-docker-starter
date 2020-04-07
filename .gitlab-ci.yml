@@ -50,7 +50,7 @@ unit-functional-tests:
   stage: tests
   script:
     - make start
-    - make symfony:tests
+    - make symfony:phpunit
 
 behat:
   <<: *internal-image

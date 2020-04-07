@@ -146,9 +146,9 @@ tw:					vendor ## Run wip tests
 coverage:			vendor ## Run code coverage of PHPunit suite
 					$(PHPUNIT) --coverage-html ./var/coverage
 
-tests: 				tu tf tw coverage ## Alias coupling all PHPUnit tests
+phpunit: 			tu tf tw coverage ## Alias coupling all PHPUnit tests
 
-.PHONY:				tu tf tw coverage tests
+.PHONY:				tu tf tw coverage phpunit
 
 ##
 ###-----------------------#
@@ -270,6 +270,6 @@ qa-clean-conf:		## Erasing all quality assurance conf files
 
 qa: 				lt ly lc php-cs-fixer phpcs phpcbf phploc phpcpd phpmd ## Alias to run/apply Q&A tools
 
-tests: 				tests behat ## Alias coupling all PHPUnit tests and Behat
+tests: 				phpunit behat ## Alias coupling all PHPUnit tests and Behat
 
 .PHONY:				qa-clean-conf qa tests

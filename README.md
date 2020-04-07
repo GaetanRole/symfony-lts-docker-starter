@@ -1,6 +1,6 @@
 # symfony-lts-docker-starter
 
-Symfony Docker starter is a up-to-date Symfony project (4.4 version) with a whole Docker stack, using a CI (Gitlab-CI here) and so on, **according to best practices** on a set of components listed below.
+Symfony Docker starter is an up-to-date Symfony project (4.4 version) with a whole Docker stack, using a CI (Gitlab-CI here) and so on, **according to best practices** on a set of components listed below.
 
 ![Software License](https://img.shields.io/badge/php-7.4-brightgreen.svg)
 

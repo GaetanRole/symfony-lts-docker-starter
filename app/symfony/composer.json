@@ -4,11 +4,11 @@
     "license": "proprietary",
     "description": "This repository is a Symfony/Docker stack according to best practices using a set of components listed below.",
     "require": {
-        "php": "^7.2.9",
+        "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "innmind/time-continuum": "^2.2",
+        "innmind/time-continuum": "^2.3",
         "ramsey/uuid-doctrine": "^1.6",
         "sensio/framework-extra-bundle": "^5.5",
         "sensiolabs/security-checker": "^6.0",
@@ -35,14 +35,14 @@
         "symfony/webpack-encore-bundle": "^1.7"
     },
     "require-dev": {
-        "behat/mink": "dev-master",
-        "behat/behat": "^3.6.1",
+        "behat/mink": "^1.8",
+        "behat/behat": "^3.6",
         "behat/mink-browserkit-driver": "^1.3",
         "behat/mink-extension": "^2.3",
         "behat/mink-selenium2-driver": "^1.4",
         "behat/symfony2-extension": "^2.1",
         "symfony/debug-pack": "^1.0",
-        "symfony/maker-bundle": "^1.14",
+        "symfony/maker-bundle": "^1.15",
         "symfony/test-pack": "^1.0",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "fzaninotto/faker": "^1.9",
@@ -72,6 +72,7 @@
         "paragonie/random_compat": "2.*",
         "symfony/polyfill-ctype": "*",
         "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php72": "*",
         "symfony/polyfill-php71": "*",
         "symfony/polyfill-php70": "*",
         "symfony/polyfill-php56": "*"
@@ -80,7 +81,8 @@
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
-            "security-checker security:check": "script"
+            "security-checker security:check": "script",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

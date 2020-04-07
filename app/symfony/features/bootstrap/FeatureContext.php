@@ -26,13 +26,25 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When a demo scenario sends a request to :path
+     * @When a user sends a request to :path
      *
      * @throws Exception When an Exception occurs during handle processing
      */
-    public function aDemoScenarioSendsARequestTo(string $path): void
+    public function aUserSendsARequestTo(string $path): void
     {
         $this->response = $this->kernel->handle(Request::create($path));
+    }
+
+    /**
+     * Checks that response has specific status code.
+     *
+     * @Then the response status code should be :code
+     */
+    public function theResponseStatusCodeShouldBe(int $code): void
+    {
+        if ($this->response->getStatusCode() !== $code) {
+            throw new RuntimeException('Different status code');
+        }
     }
 
     /**
