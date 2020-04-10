@@ -1,7 +1,7 @@
 # Child Makefile focusing on Symfony stack
 
 CONSOLE				= bin/console
-PHPUNIT				= SYMFONY_PHPUNIT_VERSION=7.5 bin/phpunit
+PHPUNIT				= SYMFONY_PHPUNIT_VERSION=9.1 bin/phpunit
 # A little hack to increase Composer memory
 COMPOSER			= php -d memory_limit=-1 /usr/local/bin/composer
 YARN				= yarn
@@ -80,7 +80,7 @@ vendor:				./composer.json ## Install dependencies (vendor) (might be slow)
 					$(COMPOSER) install --prefer-dist --no-progress
 
 node_modules:		./package.json ## Yarn install
-					$(YARN) install --frozen-lockfile
+					$(YARN) install
 					# Ensure that node-sass gets the right binding
 					node ./node_modules/node-sass/scripts/install.js
 

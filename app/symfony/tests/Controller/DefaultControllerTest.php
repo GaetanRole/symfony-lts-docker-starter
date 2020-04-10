@@ -20,7 +20,7 @@ final class DefaultControllerTest extends AbstractWebTestCase
      */
     public function testIndexMethodIsSuccessful(): void
     {
-        $this->webClient->request('GET', '/en/');
+        self::$client->request('GET', '/en/');
         self::assertResponseIsSuccessful();
     }
 }

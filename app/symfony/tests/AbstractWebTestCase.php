@@ -13,14 +13,26 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 abstract class AbstractWebTestCase extends WebTestCase
 {
     /** @var KernelBrowser A Web client */
-    protected $webClient;
+    protected static $client;
 
     /**
      * Setting up $client var
      */
     protected function setUp(): void
     {
-        $this->webClient = static::createClient();
-        $this->webClient->followRedirects(false);
+        parent::setUp();
+
+        self::$client = self::createClient();
+        self::$client->followRedirects(false);
+    }
+
+    /**
+     * Cleans up the environment after running a test.
+     */
+    protected function tearDown(): void
+    {
+        self::$client = null;
+
+        parent::tearDown();
     }
 }

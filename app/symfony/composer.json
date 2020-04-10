@@ -1,5 +1,5 @@
 {
-    "name": "gaetan-role/sf4.4-docker-starter",
+    "name": "gaetan-role/symfony-lts-docker-starter",
     "type": "project",
     "license": "proprietary",
     "description": "This repository is a Symfony/Docker stack according to best practices using a set of components listed below.",
