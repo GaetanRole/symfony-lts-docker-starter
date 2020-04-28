@@ -1,7 +1,7 @@
 # Child Makefile focusing on Symfony stack
 
 CONSOLE				= bin/console
-PHPUNIT				= SYMFONY_PHPUNIT_VERSION=9.1 bin/phpunit
+PHPUNIT				= SYMFONY_PHPUNIT_VERSION=9.1.1 bin/phpunit
 # A little hack to increase Composer memory
 COMPOSER			= php -d memory_limit=-1 /usr/local/bin/composer
 YARN				= yarn
@@ -107,7 +107,7 @@ cc-prod:			## Clear cache for prod
 					$(CONSOLE) cache:clear --env=prod
 
 update:				node_modules ## Update dependencies
-					$(COMPOSER) update --lock --no-interaction
+					$(COMPOSER) update --no-interaction
 					$(YARN) upgrade
 
 update-prod:		## Update dependencies for prod
