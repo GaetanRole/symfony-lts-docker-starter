@@ -35,13 +35,9 @@ Take a look on `app/symfony/composer.json` and `app/symfony/package.json`.
 - [Docker Compose](https://docs.docker.com/compose/)
 - Make
 
-### Suggested requirements (for Mac)
+### Suggested requirements (for Mac and Windows)
 
 - [Docker Machine NFS](https://github.com/adlogix/docker-machine-nfs)
-
-### Suggested requirements (for Windows)
-
-- Maybe a suggestion ? So add your contribution !
 
 ### Tree view
 
