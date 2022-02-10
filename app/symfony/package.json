@@ -7,7 +7,7 @@
     "es6": "^0.0.7",
     "eslint": "^5.16",
     "jquery": "^3.4",
-    "node-sass": "^4.13",
+    "node-sass": "^7.0",
     "popper.js": "^1.16",
     "sass-loader": "^7.3",
     "webpack-notifier": "^1.8"
